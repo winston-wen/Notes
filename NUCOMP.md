@@ -103,3 +103,6 @@ B
 \end{align}
 $$
 thus proving the lemma. 🟩
+
+[Cohen1993, Algorithm 5.4.9] (NUCOMP) Given two quadratic forms $$f_1=(a_1,b_1,c_1)$$ and $$f_2=(a_2,b_2,c_2)$$, which are primitive positive definite with the same discriminant. This algorithm computes the **composite** $$f_3=(a_3, b_3, c_3)$$ of $$f_1$$ and $$f_2$$. We assume the constant $$L=\lfloor\left(D/4\right)^{1/4}\rfloor$$ is already pre-computed.
+
