@@ -5,7 +5,7 @@ $$
 where
 $$
 A=d_0\frac{a_1a_2}{d^2},\;
-B=b_2+\frac{2a_2}{d}\left(v(s-b_2)-wc_2\right).
+B=b_2+\frac{2a_2}{d}\left(vn-wc_2\right).
 $$
 In general, $$d_0=\mathrm{gcd}(a_1, a_2, s, c_1, c_2, n)$$. If at least one of the form $$(a_1, b_1, c_1)$$ or $$(a_2, b_2, c_2)$$ is primitive, then $$d_0=1$$.
 
@@ -106,3 +106,96 @@ thus proving the lemma. 🟩
 
 [Cohen1993, Algorithm 5.4.9] (NUCOMP) Given two quadratic forms $$f_1=(a_1,b_1,c_1)$$ and $$f_2=(a_2,b_2,c_2)$$, which are primitive positive definite with the same discriminant. This algorithm computes the **composite** $$f_3=(a_3, b_3, c_3)$$ of $$f_1$$ and $$f_2$$. We assume the constant $$L=\lfloor\left(D/4\right)^{1/4}\rfloor$$ is already pre-computed.
 
+[DMZ21Github, `fn GmpClassGroup::inner_multiply`]
+
+第一个线性同余方程, 推导 $$\mu$$ 的解析式的过程如下.
+$$
+\begin{align}
+\mu&=\frac{By_0}{\gcd(A,M)} \bmod M
+\qquad\textrm{s.t.}\;
+y_0A+y_1M=\gcd(A,M); \\
+
+&=\frac{y_0(hu+sc_1)}{\gcd(tu, st)}  \bmod{st}
+\qquad\textrm{s.t.}\;
+y_0tu+y_1st=\gcd(tu,st); \\
+
+&=\frac{y_0(hu+sc_1)}{t\gcd(u, s)} \bmod{st}
+\qquad\textrm{s.t.}\;
+y_0u+y_1s=\gcd(u,s); \\
+
+&=\frac{y_0\left(\frac{hg}{w}+\frac{a_1c_1}{w}\right)}
+{t\gcd\left(\frac{g}{w}, \frac{a_1}{w}\right)} \bmod{\frac{a_1a_2}{w^2}}
+\qquad\textrm{s.t.}\;
+y_0\frac{g}{w}+y_1\frac{a_1}{w}=\gcd\left(\frac{g}{w}, \frac{a_1}{w}\right);\\
+
+&=\frac{y_0(hg+a_1c_1)}{t\gcd(a_1, g)}  \bmod{\frac{a_1a_2}{w^2}}
+\qquad\textrm{s.t.}\;
+y_0g+y_1a_1=\gcd\left(a_1, g\right).
+\end{align}
+$$
+注意到 $$hg+a_1c_1=(b_2^2-\Delta)/4$$, 我们有
+$$
+\mu=\frac{y_0a_2c_2}{t\gcd(a_1,g)} \bmod{\frac{a_1a_2}{w^2}}
+\qquad\textrm{s.t.}\;
+y_0g+y_1a_1=\gcd\left(a_1, g\right).
+$$
+后面会用到 $$t\mu$$, 推导如下.
+$$
+\begin{align}
+\mu&=\frac{y_0a_2c_2}{t\gcd(a_1,g)} +x_0\frac{a_1a_2}{w^2}, \\
+t\mu &= \frac{y_0a_2c_2}{\gcd(a_1,g)}+x_0\frac{a_1}{w}, \\
+&=
+\end{align}
+$$
+此外, 根据线性方程有解的条件, 我们有 $$\gcd(a_1,g)\mid a_2c_2$$. (TODO: 为什么要让这样的方程有解?)
+
+推导 $$v$$ 的解析式的过程如下.
+$$
+\begin{align}
+v &= \frac{M}{\gcd(A,M)} = \frac{st}{\gcd(tu,st)}=\frac{s}{\gcd(u,s)} \\
+&= \frac{\frac{a_1}{w}}{\gcd\left(\frac{g}{w}, \frac{a_1}{w}\right)} \\
+&= \frac{a_1}{\gcd(a_1,g)}.
+\end{align}
+$$
+第二个线性同余方程, 推导 $$\lambda$$ 的解析式的过程如下.
+$$
+\begin{align}
+\lambda&=\frac{Bz_0}{\gcd(A,M)} 
+\qquad\textrm{s.t.}\;
+z_0A+z_1M=\gcd(A,M); \\
+
+&=\frac{z_0(h-t\mu)}{\gcd(tv,s)}
+\qquad\textrm{s.t.}\;
+z_0tv+z_1s=\gcd(tv,s); \\
+\end{align}
+$$
+我们首先化简 $$\gcd(tv, s)$$, 看看它到底是个什么玩意. 化简过程中, 注意使 gcd 的参数始终为整数.
+$$
+\begin{align}
+&\gcd(tv,s) \\
+&=\gcd\left( \frac{a_1a_2}{w\gcd(a_1,g)}, \frac{a_1}{w}\right) \\
+&=\frac{1}{w}\gcd\left( \frac{a_1a_2}{\gcd(a_1,g)}, a_1\right) \\
+&=\frac{1}{w\gcd(a_1,g)}\gcd\left( a_1a_2, a_1\gcd(a_1,g)\right) \\
+&=\frac{a_1}{w\gcd(a_1,g)}\gcd\left( a_2, \gcd(a_1,g)\right) \\
+&=\frac{a_1}{w\gcd(a_1,g)}=v.
+\end{align}
+$$
+化简过程中, 应始终保持每一步中的gcd的参数都是整数. 反例
+$$
+\gcd\left(\frac{12}{2}\frac{15}{3}, \frac{12}{3}\right)\neq
+\gcd\left(\frac{15}{2}, 1\right).
+$$
+左式本来等于2, 如果按照上述化简方式, 就会错误地化出参数1, 进而误以为gcd结果为1. 当gcd的参数为符号表达式时, 这个错误会更隐蔽.
+
+我们化简 $$\lambda$$ 中的 such that 部分. 过程如下:
+$$
+\begin{align}
+& z_0tv+z_1s=\gcd(tv,s)=v \\
+& \Leftrightarrow z_0t+z_1s/v=1 \\
+& \Leftrightarrow z_0\frac{a_2}{w} + z_1\frac{\gcd(a_1,g)}{w}=1 \\
+& \Leftrightarrow z_0a_2 + z_1\gcd(a_1,g)=w \\
+& \Leftrightarrow z_0a_2 + z_1(y_0g+y_1a_1)=w \\
+& \Leftrightarrow z_1y_1a_1+z_0a_2+z_1y_0g = w =\gcd(a_1,a_2,g).
+\end{align}
+$$
+如此, $$\lambda$$ 的such that部分就是在约束 $$a_1, a_2, g$$ 的系数, 使系数满足拓展欧几里得算法.
