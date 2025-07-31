@@ -111,43 +111,43 @@ thus proving the lemma. 🟩
 第一个线性同余方程, 推导 $$\mu$$ 的解析式的过程如下.
 $$
 \begin{align}
-\mu&=\frac{By_0}{\gcd(A,M)} \bmod M
+\mu&=\frac{By_0}{\gcd(A,M)}
 \qquad\textrm{s.t.}\;
 y_0A+y_1M=\gcd(A,M); \\
 
-&=\frac{y_0(hu+sc_1)}{\gcd(tu, st)}  \bmod{st}
+&=\frac{y_0(hu+sc_1)}{\gcd(tu, st)}
 \qquad\textrm{s.t.}\;
 y_0tu+y_1st=\gcd(tu,st); \\
 
-&=\frac{y_0(hu+sc_1)}{t\gcd(u, s)} \bmod{st}
+&=\frac{y_0(hu+sc_1)}{t\gcd(u, s)}
 \qquad\textrm{s.t.}\;
 y_0u+y_1s=\gcd(u,s); \\
 
 &=\frac{y_0\left(\frac{hg}{w}+\frac{a_1c_1}{w}\right)}
-{t\gcd\left(\frac{g}{w}, \frac{a_1}{w}\right)} \bmod{\frac{a_1a_2}{w^2}}
+{t\gcd\left(\frac{g}{w}, \frac{a_1}{w}\right)}
 \qquad\textrm{s.t.}\;
 y_0\frac{g}{w}+y_1\frac{a_1}{w}=\gcd\left(\frac{g}{w}, \frac{a_1}{w}\right);\\
 
-&=\frac{y_0(hg+a_1c_1)}{t\gcd(a_1, g)}  \bmod{\frac{a_1a_2}{w^2}}
+&=\frac{y_0(hg+a_1c_1)}{t\gcd(a_1, g)}
 \qquad\textrm{s.t.}\;
 y_0g+y_1a_1=\gcd\left(a_1, g\right).
 \end{align}
 $$
-注意到 $$hg+a_1c_1=(b_2^2-\Delta)/4$$, 我们有
+注意到 $$hg+a_1c_1=(b_2^2-\Delta)/4=a_2c_2$$, 我们有
 $$
-\mu=\frac{y_0a_2c_2}{t\gcd(a_1,g)} \bmod{\frac{a_1a_2}{w^2}}
+\mu=\frac{y_0a_2c_2}{t\gcd(a_1,g)}
 \qquad\textrm{s.t.}\;
 y_0g+y_1a_1=\gcd\left(a_1, g\right).
 $$
 后面会用到 $$t\mu$$, 推导如下.
 $$
 \begin{align}
-\mu&=\frac{y_0a_2c_2}{t\gcd(a_1,g)} +x_0\frac{a_1a_2}{w^2}, \\
-t\mu &= \frac{y_0a_2c_2}{\gcd(a_1,g)}+x_0\frac{a_1}{w}, \\
-&=
+\mu&=\frac{y_0a_2c_2}{t\gcd(a_1,g)}, \\
+t\mu &= \frac{y_0a_2c_2}{\gcd(a_1,g)}
+=\frac{y_0a_2c_2}{\gcd(a_1,g)}
 \end{align}
 $$
-此外, 根据线性方程有解的条件, 我们有 $$\gcd(a_1,g)\mid a_2c_2$$. (TODO: 为什么要让这样的方程有解?)
+此外, 根据线性方程有解的条件, 我们有 $$\gcd(a_1,g)\mid wc_2$$. TODO: 条件一定成立吗?
 
 推导 $$v$$ 的解析式的过程如下.
 $$
@@ -160,7 +160,7 @@ $$
 第二个线性同余方程, 推导 $$\lambda$$ 的解析式的过程如下.
 $$
 \begin{align}
-\lambda&=\frac{Bz_0}{\gcd(A,M)} 
+\lambda&=\frac{Bz_0}{\gcd(A,M)}
 \qquad\textrm{s.t.}\;
 z_0A+z_1M=\gcd(A,M); \\
 
@@ -177,7 +177,7 @@ $$
 &=\frac{1}{w}\gcd\left( \frac{a_1a_2}{\gcd(a_1,g)}, a_1\right) \\
 &=\frac{1}{w\gcd(a_1,g)}\gcd\left( a_1a_2, a_1\gcd(a_1,g)\right) \\
 &=\frac{a_1}{w\gcd(a_1,g)}\gcd\left( a_2, \gcd(a_1,g)\right) \\
-&=\frac{a_1}{w\gcd(a_1,g)}=v.
+&=\frac{a_1}{\gcd(a_1,g)}=v.
 \end{align}
 $$
 化简过程中, 应始终保持每一步中的gcd的参数都是整数. 反例
@@ -195,7 +195,27 @@ $$
 & \Leftrightarrow z_0\frac{a_2}{w} + z_1\frac{\gcd(a_1,g)}{w}=1 \\
 & \Leftrightarrow z_0a_2 + z_1\gcd(a_1,g)=w \\
 & \Leftrightarrow z_0a_2 + z_1(y_0g+y_1a_1)=w \\
-& \Leftrightarrow z_1y_1a_1+z_0a_2+z_1y_0g = w =\gcd(a_1,a_2,g).
+& \Leftrightarrow y_1z_1a_1+z_0a_2+y_0z_1g = w =\gcd(a_1,a_2,g).
 \end{align}
 $$
-如此, $$\lambda$$ 的such that部分就是在约束 $$a_1, a_2, g$$ 的系数, 使系数满足拓展欧几里得算法.
+如此, $$\lambda$$ 的 such that 部分就是在对应[Lemma 5.4.5]中的如下约束. 注意下式中 $$u, v, w$$ 是为了跟原始文献保持一致, 暂时不是代码中的 $$u, v, w$$.
+$$
+ua_1+va_2+w\frac{b_1+b_2}{2}=\gcd\left(a_1,a_2,\frac{b_1+b_2}{2}\right).
+$$
+通过梳理代码, 我们知道 $$B=b_2-2kt$$. 如此, $$k$$ 对应的就是 [Algorithm 5.4.7] 中的 $$r$$. 我们先计算 $$k$$, 过程如下.
+$$
+\begin{align}
+k &= \mu+\lambda v = \mu+z_0(h-t\mu) = \mu (1-z_0t)+z_0h \\
+&=z_1 \mu  s/v+z_0h \\
+&=z_1\frac{y_0a_2c_2}{\frac{a_2}{w}\gcd(a_1,g)}\cdot\frac{a_1}{w}\cdot\frac{\gcd(a_1,g)}{a_1}+z_0\cdot\frac{b_2-b_1}{2} \\
+&=z_1y_0c_2+z_0\cdot\frac{b_2-b_1}{2}.
+\end{align}
+$$
+至此, 我们完全忽略了$$\mu, \lambda$$ 所携带的 mod 尾巴. 这是因为, 扩展欧几里得算法的解并不唯一, 具有周期性. 其周期性本质上来自丢番图方程 $$n_1\alpha_1+n_2\alpha_2=\gcd(\alpha_1, \alpha_2)$$ 的通解为
+$$
+\begin{cases}
+n_1=\hat n_1 + n\cdot\frac{\alpha_2}{\gcd{(\alpha_1, \alpha_2)}},\\
+n_2=\hat n_2 - n\cdot\frac{\alpha_1}{\gcd{(\alpha_1, \alpha_2)}}.
+\end{cases}
+$$
+对 $$\mu, \lambda$$ 取余, 等价于调整他们背后的 $$y_0, y_1, z_0, z_1$$, 并不破坏他们的关系.
