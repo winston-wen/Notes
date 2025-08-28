@@ -20,7 +20,7 @@ $$
 - **Simulator**: Used to show the **zero-knowledge property**, ensuring the verifier learns nothing beyond the validity of the statement.
 - **Extractor**: Used to show the **soundness property**, ensuring the prover cannot convince the verifier of a false statement.
 
-Edited with Typora
+
 
 密码学中的「验」大多利用了**同构性**.
 
@@ -52,8 +52,6 @@ h^{z_r}f^{z_m}
 &=a_2\cdot c_2^e
 \end{align}
 $$
-
-Edited with Typora
 
 ## SigmaProm2协议 注解
 
