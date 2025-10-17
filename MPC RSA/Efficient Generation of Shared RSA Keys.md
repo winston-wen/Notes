@@ -30,7 +30,7 @@ Since $$(g|p)=(g|q)$$ it follows that $$g^{\frac{\varphi (n)}{4}}\equiv \pm 1 \b
 
 So in this case, the procedure always succeeds.
 
-II. Suppose at least one of $$p, q$$ is not prime. Assume $$n$$ have $$m$$ distinct prime factors, that is, $$n=p_1^{d_1}p_2^{d_2} \cdots p_m^{d_m}$$, where at least one $$d_i\ge 2$$. Let $$e=(n-p-q+1)/4$$. By computation, we know that $$e$$ is odd since $$p\equiv q \equiv 3 \pmod 4$$ (See Note 2).
+II. Suppose at least one of $$p, q$$ is not prime. Assume $$n$$ have $$m$$ distinct prime factors, that is, $$n=p_1^{d_1}p_2^{d_2} \cdots p_m^{d_m}$$, where at least one $$d_i\ge 2$$. Let $$e=(n-p-q+1)/4$$. By computation, we know that $$e$$ is odd since $$p\equiv q \equiv 3 \pmod 4$$. 
 
 Define the following two subgroups of $$\Z_n^*$$ (See Note 1). 
 
@@ -40,7 +40,7 @@ G&=\set{g\in\Z_n^* ~:~ (g|n)=1},\\
 H&=\set{g\in G ~:~ g^e\equiv 1\pmod n}.
 \end{align}
 $$
-Now $$G$$ is the set of all possible $$g$$-s at Step 2, and $$H$$ is the set of all successful $$g$$-s at Step 3. To prove Lemma 2, we show that $$\lvert H \rvert \le \frac{1}{2}\lvert G \rvert$$ (Hint: Lagrange Theorem of group order). Since $$H$$ is a subgroup of $$G$$, it suffices to prover proper containment of $$H$$ in $$G$$, i.e. prove the existence of $$g\in G\backslash H$$. There are 4 cases to consider.
+Now $$G$$ is the set of all possible $$g$$-s at Step 2, and $$H$$ is the set of all successful $$g$$-s at Step 3. To prove Lemma 2, we show that $$\lvert H \rvert \le \frac{1}{2}\lvert G \rvert$$ (See Note 3 for hint). Since $$H$$ is a subgroup of $$G$$, it suffices to prover proper containment of $$H$$ in $$G$$, i.e. prove the existence of $$g\in G\backslash H$$. There are 4 cases to consider.
 
 Case 1. Suppose $$m\ge 3$$, that is, $$n$$ has at lease 3 distinct prime factors. Let $$a$$ be a quadratic non-residue modulo $$p_3$$. Define $$g\in\Z_n^*$$ to be an element satisfying the following congruence system:
 $$
@@ -54,23 +54,25 @@ a \pmod{p_3} & \mathrm{if}~(-1|p_2)=-1
 \land ~ g&\equiv 1 \pmod {p_i} \mathrm{~for~} i\ge 3.
 \end{align}
 $$
-Note that the above congruence system is always valid, which is ensured by CRM. Observe that $$g\in G$$. Since $$e$$ is odd, $$g^e\equiv g \equiv 1 \pmod{p_1}$$, and $$g^e\equiv g \equiv -1 \pmod{p_2}$$. Consequently, $$g^e\not\equiv \pm 1 \pmod{N}$$ (Why?), i.e. $$g\not\in H$$.
+Note that the above congruence system is always valid, which is ensured by CRM. Observe that $$g\in G$$. Since $$e$$ is odd, $$g^e\equiv g \equiv 1 \pmod{p_1}$$, and $$g^e\equiv g \equiv -1 \pmod{p_2}$$. Consequently, $$g^e\not\equiv \pm 1 \pmod{N}$$ (See Note 2 for hint), i.e. $$g\not\in H$$.
 
-Case 2. Suppose $$\gcd(p, q)>1$$. Then there exists an odd prime $$p_1$$ which divides $$p, q$$. Then $$p_1^2$$ divides $$n$$, which implies that $$p_1$$ divides $$\varphi(n)$$ (Why?).
-
-(Hint Begin) For prime $$p$$ and positive integer $$k$$, $$\varphi(p^k)=p^k-p^{k-1}$$. For coprime $$p, q$$, $$\varphi(pq)=\varphi(p)\varphi(q)$$. (Hint End)
+Case 2. Suppose $$\gcd(p, q)>1$$. Then there exists an odd prime $$p_1$$ which divides $$p, q$$. Then $$p_1^2$$ divides $$n$$, which implies that $$p_1$$ divides $$\varphi(n)$$ (See Note 4 for hint).
 
 It follows that in $$\Z_n^*$$ there exists an element $$g$$ of order $$p_1$$. Since $$p_1$$ is odd, we have $$(g|n)=(g^{p_1}|n)=(1|n)=1$$, i.e. $$g\in G$$ by definition. Since $$r$$ divides $$p, q$$, we know that $$r$$ does not divide $$4e=n-p-q+1$$. Consequently, $$g^{4e}\not\equiv 1\pmod n$$, which implies that $$g^e \neq \pm 1 \pmod n$$. Hence $$g\not\in H$$.
 
 Case 3. The only way $$n=pq$$ does not fall into both above cases is: if $$p=p_1^{d_1}$$ and $$q=p_2^{d_2}$$ where $$p_1, p_2$$ are distinct primes, and at least one of $$d_1, d_2$$ is larger than 1. By symmetry, we may assume $$d_1>1$$. Since $$\Z_p^*$$ is a cyclic group of order $$\varphi(p)=p_1^{d_1-1}(p_1-1)$$, it contains an element of order $$p_1^{d_1-1}$$. It follows that $$\Z_n^*$$ also contains an element $$g$$ of order $$p_1^{d_1-1}$$. As stated in Case 2, $$(g|n)=1$$, i.e. $$g\in G$$. If $$q\not\equiv 1 \pmod{p_1^{d_1-1}}$$, then $$4e=n-p-q+1$$ is not divisible by $$p_1^{d_1-1}$$. Consequently, $$g^{4e}\not\equiv 1\pmod n$$. Hence $$g\not\in H$$.
 
-Case 4. We are left with the case, which inherits Case 3, except that $$q\equiv 1 \pmod{p_1^{d_1-1}}$$. In this case, it may happen that $$H=G$$. For example, $$p=3^t$$ and $$q=2\cdot 3^{t-1} + 1$$ such that $$t$$ is odd and $$q$$ is prime.
+Case 4. We are left with the case which inherits Case 3, except that $$q\equiv 1 \pmod{p_1^{d_1-1}}$$. In this case, it may happen that $$H=G$$. For example, $$p=3^t$$ and $$q=2\cdot 3^{t-1} + 1$$ such that $$t$$ is odd and $$q$$ is prime.
 
-Observe that $$p_1^{d_1-1}\ge \sqrt{p} \ge 2^{t/2}$$. Consequently, since $$p, q$$ are chosen independently, the probability of $$q\equiv 1\pmod {p_1^{d_1-1}}$$ is less than $$\frac{1}{2^{t/2}}$$. In addition, $$p$$ has to be a prime power which happens with probability less than $$\frac{n}{2^{t/2}}$$. The probability that both events happen is less than $$\frac{n}{2^t}$$. Hence, this case occurs with exponentially small probability. □
+Observe that $$p_1^{d_1-1} \ge \sqrt{p}\ge 2^{d_1/2}$$ (See Note 5). Consequently, since $$p, q$$ are chosen independently, the probability of $$q\equiv 1\pmod {p_1^{d_1-1}}$$ is less than $$\frac{1}{2^{d_1/2}}$$. In addition, $$p$$ has to be a prime power which happens with probability less than $$\frac{n}{2^{d_1/2}}$$ (See Note 6). The probability that both events happen is less than $$\frac{n}{2^{d_1}}$$. Hence, this case occurs with exponentially small probability. □
 
-(Note 1) The set of integers $$\set{g~:~0\le g\le n-1\land\gcd(g,n)=1}$$  forms a group under multiplication modulo $$n$$. Such set is often denoted as $$\Z_n^*$$, $$\Z_n^\times$$, $$(\Z/\Z_n)^\times$$, etc.
 
-(Note 2) The following lemma states that $$g$$ is congruent to $$n$$, if and only if $$g$$ is congruent to every prime factors of $$n$$.
+
+**Lemma 2 Proof Notes:**
+
+**(Note 1)** The set of integers $$\set{g~:~0\le g\le n-1\land\gcd(g,n)=1}$$  forms a group under multiplication modulo $$n$$. Such set is often denoted as $$\Z_n^*$$, $$\Z_n^\times$$, $$(\Z/\Z_n)^\times$$, etc.
+
+**(Note 2)** The following lemma states that $$g$$ is congruent to $$n$$, if and only if $$g$$ is congruent to every prime factors of $$n$$.
 
 Lemma. Assume $$n=p_1^{d_1}p_2^{d_2} \cdots p_m^{d_m}$$ is the canonical prime factorization of integer $$n$$. For any integer $$g$$ and $$s$$, we have:
 $$
@@ -81,3 +83,11 @@ Proof:
 (if) Assume $$g\equiv s\pmod n$$. Then there exists integer $$k$$ such that $$g=kn+s$$. Then for any $$i$$, as $$p_i^{a_i}\mid kn$$, we have $$p_i^{a_i}\mid (g-s)$$. Now we proved the "if" part.
 
 (only if) Assume $$g\equiv s\pmod {p_i^{a_i}}$$ for any $$i$$. Then for any $$i$$, there exists integer $$k_i$$ such that $$g=kp_i^{a_i}+s$$. Then $$p_i^{a_i}\mid (g-s)$$ for any $$i$$. This implies $$\mathrm{lcm}(\dots,~p_i^{a_i},~\dots)\mid (g-s)$$. Note that the "lcm" expression is indeed $$n$$. Now we proved the "only if" part. □
+
+**(Note 3)** By Lagrange Theorem of group order.
+
+**(Note 4)** For prime $$p$$ and positive integer $$k$$, $$\varphi(p^k)=p^k-p^{k-1}$$. For coprime $$p, q$$, $$\varphi(pq)=\varphi(p)\varphi(q)$$.
+
+**(Note 5)** TODO
+
+**(Note 6)** TODO
