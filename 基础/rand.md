@@ -118,7 +118,7 @@ static inline bool __must_check rdrand_long(unsigned long *v)
 
 
 
-## svarog-go tag: v0.9.0
+## golang `crypto/rand`
 
 `crypto/rand : rand.go`
 
