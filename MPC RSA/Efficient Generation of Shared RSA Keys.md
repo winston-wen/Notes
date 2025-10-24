@@ -11,7 +11,7 @@ $$
 g^\frac{n-p-q+1}{4}\equiv \pm 1\pmod N.
 $$
 
-
+---
 
 ## Lemma 2.
 
@@ -66,7 +66,7 @@ Case 2. Suppose $$\gcd(p, q)>1$$. Then there exists an odd prime $$p_1$$ which d
 
 It follows that in $$\Z_n^*$$ there exists an element $$g$$ of order $$p_1$$. Since $$p_1$$ is odd, we have $$(g|n)=(g^{p_1}|n)=(1|n)=1$$, i.e. $$g\in G$$ by definition. Since $$r$$ divides $$p, q$$, we know that $$r$$ does not divide $$4e=n-p-q+1$$. Consequently, $$g^{4e}\not\equiv 1\pmod n$$, which implies that $$g^e \neq \pm 1 \pmod n$$. Hence $$g\not\in H$$.
 
-Case 3. The only way $$n=pq$$ does not fall into both above cases is: if $$p=p_1^{d_1}$$ and $$q=p_2^{d_2}$$ where $$p_1, p_2$$ are distinct odd primes, and at least one of $$d_1, d_2$$ is larger than 1. By symmetry, we may assume $$d_1>1$$. Since $$\Z_p^*$$ is a cyclic group of order $$\varphi(p)=p_1^{d_1-1}(p_1-1)$$, it contains an element of order $$p_1^{d_1-1}$$. It follows that $$\Z_n^*$$ also contains an element $$g$$ of order $$p_1^{d_1-1}$$. As stated in Case 2, $$(g|n)=1$$, i.e. $$g\in G$$. If $$q\not\equiv 1 \pmod{p_1^{d_1-1}}$$, then $$4e=n-p-q+1$$ is not divisible by $$p_1^{d_1-1}$$. Consequently, $$g^{4e}\not\equiv 1\pmod n$$. Hence $$g\not\in H$$.
+Case 3. The only way $$n=pq$$ does not fall into both above cases is: if $$p=p_1^{d_1}$$ and $$q=p_2^{d_2}$$ where $$p_1, p_2$$ are distinct odd primes,  $$d_1, d_2$$ are odd positive integers (see Note 5), and at least one of $$d_1, d_2$$ is larger than 1. By symmetry, we may assume $$d_1>1$$. Since $$\Z_p^*$$ is a cyclic group of order $$\varphi(p)=p_1^{d_1-1}(p_1-1)$$, it contains an element of order $$p_1^{d_1-1}$$. It follows that $$\Z_n^*$$ also contains an element $$g$$ of order $$p_1^{d_1-1}$$. As stated in Case 2, $$(g|n)=1$$, i.e. $$g\in G$$. If $$q\not\equiv 1 \pmod{p_1^{d_1-1}}$$, then $$4e=n-p-q+1$$ is not divisible by $$p_1^{d_1-1}$$. Consequently, $$g^{4e}\not\equiv 1\pmod n$$. Hence $$g\not\in H$$.
 
 Case 4. We are left with the case which inherits Case 3, except that $$q\equiv 1 \pmod{p_1^{d_1-1}}$$. In this case, it may happen that $$H=G$$. For example, $$p=3^t$$ and $$q=2\cdot 3^{t-1} + 1$$ such that $$t$$ is odd and $$q$$ is prime.
 
@@ -108,15 +108,24 @@ By Lagrange Theorem of group order.
 
 For prime $$p$$ and positive integer $$k$$, $$\varphi(p^k)$$ $$=p^k-p^{k-1}$$. For coprime $$p, q$$, $$\varphi(pq)=\varphi(p)\varphi(q)$$.
 
+#### Note 5.
+
+If $$p^k\equiv 3 \pmod 4$$, then $$p\equiv 3\pmod 4$$ and $$k$$ is odd.
+
+----
+
 ## Procedure 2.
 
 This is a patch on Procedure 1. There are two alternatives for Step 4.
 
-Step 4 Alternative 1. Let $$K$$ be a group defined as follows (See Note 1). When $$n=pq$$ is a semi-prime, $$K$$ contains $$(p+1)(q+1)$$ elements.
+Step 4 Alternative 1. Let $$K$$ be a group defined as follows (See Note 1~3). When $$n=pq$$ is a semi-prime, $$K$$ contains $$(p+1)(q+1)$$ elements. In this case, we pick arbitrary $$h\in K$$ and get $$h^{(p+1)(q+1)}=1$$.
 $$
 K=\left(\Z_n\left[x\right]/\left(x^2+1\right)\right)^*/\Z_n^*.
 $$
 
+When $$n$$ falls into Case 4, at least half the elements in $$K$$ do not satisfy $$h^{(p+1)(q+1)}=1$$.
+
+Step 4 Alternative 2. TODO.
 
 ### Notes.
 
@@ -192,7 +201,7 @@ $$
 \begin{bmatrix}c\\d\end{bmatrix}\equiv
 \begin{bmatrix}0\\1\end{bmatrix}\pmod n.
 $$
-Now $$\det \begin{bmatrix}b&a\\-a&b\end{bmatrix}=a^2+b^2$$. The equation has solution if and only if $$\gcd(\det,n)=1$$ (TODO). 
+Now $$\det \begin{bmatrix}b&a\\-a&b\end{bmatrix}=a^2+b^2$$. The equation has unique solution if and only if $$\gcd(\det,n)=1$$ ⚠️.
 
 Observe that $$x^2+1$$ is irreducible in $$\Z_p$$ and $$\Z_q$$, by CRM, we have
 $$
