@@ -123,7 +123,7 @@ $$
 K=\left(\Z_n\left[x\right]/\left(x^2+1\right)\right)^*/\Z_n^*.
 $$
 
-When $$n$$ falls into Case 4, at least half the elements in $$K$$ do not satisfy $$h^{(p+1)(q+1)}=1$$.
+When $$n$$ falls into Case 4, at least half the elements in $$K$$ do not satisfy $$h^{(p+1)(q+1)}=1$$ (See Note 4).
 
 Step 4 Alternative 2. TODO.
 
@@ -234,3 +234,6 @@ $$
 &=(p+1)(q+1).
 \end{align}
 $$
+
+#### Note 4. When $$n$$ falls into Case 4.
+
