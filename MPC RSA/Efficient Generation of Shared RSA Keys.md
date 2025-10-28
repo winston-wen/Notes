@@ -116,16 +116,14 @@ If $$p^k\equiv 3 \pmod 4$$, then $$p\equiv 3\pmod 4$$ and $$k$$ is odd.
 
 ## Procedure 2.
 
-This is a patch on Procedure 1. There are two alternatives for Step 4.
+This is a patch on Procedure 1.
 
-Step 4 Alternative 1. Let $$K$$ be a group defined as follows (See Note 1~3). When $$n=pq$$ is a semi-prime, $$K$$ contains $$(p+1)(q+1)$$ elements. In this case, we pick arbitrary $$h\in K$$ and get $$h^{(p+1)(q+1)}=1$$.
+Step 4. Let $$K$$ be a group defined as follows (See Note 1~3). When $$n=pq$$ is a semi-prime, $$K$$ contains $$(p+1)(q+1)$$ elements. In this case, we pick arbitrary $$h\in K$$ and get $$h^{(p+1)(q+1)}=1$$.
 $$
 K=\left(\Z_n\left[x\right]/\left(x^2+1\right)\right)^*/\Z_n^*.
 $$
 
-When $$n$$ falls into Case 4, at least half the elements in $$K$$ do not satisfy $$h^{(p+1)(q+1)}=1$$ (See Note 4).
-
-Step 4 Alternative 2. TODO.
+When $$n$$ falls into Case 4, $$K$$ contains far more than $$(p+1)(q+1)$$ elements, which causes at least half the elements in $$K$$ do not satisfy $$h^{(p+1)(q+1)}=1$$ (See Note 4).
 
 ### Notes.
 
@@ -237,3 +235,17 @@ $$
 
 #### Note 4. When $$n$$ falls into Case 4.
 
+$$x^2+1$$ is irreducible in $$\Z_{p_1}$$. By [this lemma](./ZpkReducible.md), it is also irreducible in $$\Z_{p_1^{d_1}}$$. Similarly it is irreducible in $$\Z_{p_2^{d_2}}$$.
+
+We have $$\lvert K_0^*\rvert=(p^2-1)(q^2-1)$$ from Note 2.
+
+We also have $$\lvert\Z_n^*\rvert=\varphi(p_1^{d_1})\varphi(p_2^{d_2})=\frac{pq(p_1-1)(p_2-1)}{p_1p_2}$$.
+
+Thus 
+$$
+\begin{align}
+\lvert K \rvert 
+= \frac{\lvert K_0^*\rvert}{\lvert\Z_n^*\rvert}
+=(p+1)p_1^{d_1-1}(q+1)p_2^{d_2-1}.
+\end{align}
+$$
