@@ -33,7 +33,7 @@ f(a) + tp^kf'(a) &\equiv 0 \pmod{p^{k+1}} \\
 $$
 注意: 式 $$\eqref{res}$$ 中 $$f(a)/p^k$$ 是整数除法, 这是由前提条件 $$\eqref{pre}$$ 给出的. 而 $$1/f'(a)$$ 是模 $$p$$ 逆, 这是由 $$\eqref{res}$$ 所示的运算过程给出的. 🟩
 
-
+----
 
 例子: 找到 $$x^3-2x\equiv 1\pmod{125}$$ 的一个解.
 
@@ -60,3 +60,8 @@ $$
 \end{align}
 $$
 最终, $$x=124$$ 是 $$x^3-2x\equiv 1\pmod{125}$$ 的一个解.
+
+-----
+
+Hensel 引理, 多变量版本. 若有 $$f(\boldsymbol{a})\equiv\boldsymbol{0}\pmod{p^k}$$, 并且 Jacobian 矩阵 $$J_f(\boldsymbol{a})$$ 在模 $$p$$ 下可逆; 则存在唯一的向量 $$\boldsymbol{t} \bmod p$$, 使得 $$f(\boldsymbol{a}+p^k \boldsymbol{t})\equiv \boldsymbol{0}\pmod {p^{k+1}}$$.
+
