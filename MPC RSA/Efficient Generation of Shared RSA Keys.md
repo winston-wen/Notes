@@ -88,7 +88,7 @@ The set of integers $$\set{g~:~0\le g\le n-1\land\gcd(g,n)=1}$$  forms a group u
 
 #### Note 2.
 
-The following lemma states that $$g$$ is congruent to $$n$$, if and only if $$g$$ is congruent to every prime factors of $$n$$.
+The following lemma states that $$g\equiv s\pmod n$$, if and only if $$g\equiv s$$ w.r.t every prime factors of $$n$$.
 
 Lemma. Assume $$n=p_1^{d_1}p_2^{d_2} \cdots p_m^{d_m}$$ is the canonical prime factorization of integer $$n$$. For any integer $$g$$ and $$s$$, we have:
 $$
@@ -235,17 +235,47 @@ $$
 
 #### Note 4. When $$n$$ falls into Case 4.
 
-$$x^2+1$$ is irreducible in $$\Z_{p_1}$$. By [this lemma](./ZpkReducible.md), it is also irreducible in $$\Z_{p_1^{d_1}}$$. Similarly it is irreducible in $$\Z_{p_2^{d_2}}$$.
+$$x^2+1$$ is irreducible in $$\Z_{p_1}$$. By [this lemma](./ZpkReducible.md), it is also irreducible in $$\Z_{p_1^{d_1}}$$. Similarly it is irreducible in $$\Z_{p_2^{d_2}}$$. By CRT, we have
+$$
+K_0\cong
+\frac{\Z_{p_1}^{d_1}[x]}{x^2+1}\times\frac{\Z_{p_2}^{d_2}[x]}{x^2+1}.
+$$
+It follows that
+$$
+K_0^*\cong
+\left(\frac{\Z_{p_1}^{d_1}[x]}{x^2+1}\right)^*
+\times
+\left(\frac{\Z_{p_2}^{d_2}[x]}{x^2+1}\right)^*.
+$$
+Now we study the order of $$R=\left(\frac{\Z_r^t[x]}{x^2+1}\right)^*$$ where $$r\equiv 3\pmod 4$$ is prime and $$t$$ is positive integer.
 
-We have $$\lvert K_0^*\rvert=(p^2-1)(q^2-1)$$ from Note 2.
+For any element $$ax+b\in R$$, $$a,b\in\Z_r^t$$, the element is invertible if and only if $$\gcd{(a^2+b^2,r^t)}=1$$ (See Note 2). Now we consider the count of elements in $$R$$ that is NOT invertible. $$\gcd{(a^2+b^2,r^t)}>1$$ implies that $$r\mid(a^2+b^2)$$, i.e.
+$$
+a^2+b^2\equiv 0 \pmod r.
+$$
+By simple calculation of Legendre symbol, if $$r\equiv 3\pmod 4$$ and $$x \bmod r$$ is a quadratic residue, then $$-x \bmod r$$ is a quadratic NON-residue, and vice versa. Hence the above equation implies $$a,b\equiv 0\pmod r$$. It follows that the count of such $$(a,b)$$ is $$(r^{t-1})^2$$.
 
-We also have $$\lvert\Z_n^*\rvert=\varphi(p_1^{d_1})\varphi(p_2^{d_2})=\frac{pq(p_1-1)(p_2-1)}{p_1p_2}$$.
-
-Thus 
+Now we go back to our main task. It follows that
+$$
+\begin{align}
+\left|K_0^*\right|&=\left((p_1^{d_1})^2-(p_1^{d_1-1})^2\right)\left((p_2^{d_2})^2-(p_2^{d_2-1})^2\right).
+\end{align}
+$$
+On the other hand,
+$$
+\begin{align}
+\left| Z_n^* \right|&=\varphi(n)=\varphi(p_1^{d_1})\varphi(p_2^{d_2}) \\
+&=(p_1^{d_1}-p_1^{d_1-1})(p_2^{d_2}-p_2^{d_2-1}).
+\end{align}
+$$
+Therefore,
 $$
 \begin{align}
 \lvert K \rvert 
-= \frac{\lvert K_0^*\rvert}{\lvert\Z_n^*\rvert}
-=(p+1)p_1^{d_1-1}(q+1)p_2^{d_2-1}.
+&= \frac{\lvert K_0^*\rvert}{\lvert\Z_n^*\rvert} \\
+&= (p_1^{d_1}+p_1^{d_1-1})(p_2^{d_2}+p_2^{d_2-1}) \\
+&= (p+p_1^{d_1-1})(q+p_2^{d_2-1}) \\
+&> (p+1)(q+1).
 \end{align}
 $$
+In conclusion, the fact that $$\left| K \right|>(p+1)(q+1)$$ is the key to the detection of Case 4 of Procedure 1.
