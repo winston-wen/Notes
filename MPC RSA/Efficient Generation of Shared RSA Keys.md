@@ -118,12 +118,12 @@ If $$p^k\equiv 3 \pmod 4$$, then $$p\equiv 3\pmod 4$$ and $$k$$ is odd.
 
 This is a patch on Procedure 1.
 
-Step 4. Let $$K$$ be a group defined as follows (See Note 1~3). When $$n=pq$$ is a semi-prime, $$K$$ contains $$(p+1)(q+1)$$ elements. In this case, we pick arbitrary $$h\in K$$ and get $$h^{(p+1)(q+1)}=1$$.
+Step 4. Let $$K$$ be a group defined as follows (See Note 1~2). When $$n=pq$$ is a semi-prime, $$K$$ contains $$(p+1)(q+1)$$ elements. In this case, we pick arbitrary $$h\in K$$ and get $$h^{(p+1)(q+1)}=1$$.
 $$
 K=\left(\Z_n\left[x\right]/\left(x^2+1\right)\right)^*/\Z_n^*.
 $$
 
-When $$n$$ falls into Case 4, $$K$$ contains far more than $$(p+1)(q+1)$$ elements, which causes at least half the elements in $$K$$ do not satisfy $$h^{(p+1)(q+1)}=1$$ (See Note 4).
+When $$n$$ falls into Case 4, $$K$$ contains far more than $$(p+1)(q+1)$$ elements, which causes at least half the elements in $$K$$ do not satisfy $$h^{(p+1)(q+1)}=1$$.
 
 ### Notes.
 
@@ -178,87 +178,59 @@ Hint: the second step is achieved by applying $$x^2\equiv-1$$.
 
 Unity: $$[1+0x]=[1]$$.
 
-#### Note 2. Explore $$K_0^*$$.
+#### Note 2. Structure of group $$K$$.
 
-$$K_0^*$$ is the group of all invertible elements of $$K_0$$.
+Assume $$n=pq$$, $$p=p_1^{d_1}$$, $$q=p_2^{d_2}$$.
 
-An element $$[ax+b]\in K_0$$ is invertible, if and only if there exists $$[cx+d]\in K_0$$, such that:
+By CRT we have $$\Z_{pq}\cong \Z_p\times \Z_q$$; this is available as $$\gcd(p,q)=1$$. This can be promoted to $$\Z_{pq}[x]\cong \Z_p[x]\times \Z_q[x]$$. By [this lemma](./ZpkReducible.md), $$x^2+1$$ is irreducible in $$\Z_p$$ and $$\Z_q$$. Therefore,
+$$
+K_0\cong
+\frac{\Z_p[x]}{x^2+1}\times\frac{\Z_q[x]}{x^2+1}.
+$$
+It follows that
+$$
+K_0^*\cong
+\left(\frac{\Z_p[x]}{x^2+1}\right)^*
+\times
+\left(\frac{\Z_q[x]}{x^2+1}\right)^*.
+$$
+Now we study the order of $$R=\left(\frac{\Z_{r^t}[x]}{x^2+1}\right)^*$$ where $$r\equiv 3\pmod 4$$ is prime and $$t$$ is positive integer.
+
+An element $$[ax+b]\in R$$ is invertible, if and only if there exists $$[cx+d]\in R$$, such that:
 $$
 (ax+b)(cx+d)\equiv 1 \pmod{(x^2+1)}.
 $$
 By calculation, we have the following congruence system
 $$
 \begin{cases}
-bc+ad \equiv 0 \pmod n \\
-bd-ac \equiv 1 \pmod n,
+bc+ad \equiv 0 \pmod{r^t} \\
+bd-ac \equiv 1 \pmod{r^t},
 \end{cases}
 $$
 which is also denoted as
 $$
 \begin{bmatrix}b&a\\-a&b\end{bmatrix}\cdot
 \begin{bmatrix}c\\d\end{bmatrix}\equiv
-\begin{bmatrix}0\\1\end{bmatrix}\pmod n.
+\begin{bmatrix}0\\1\end{bmatrix}\pmod{r^t}.
 $$
-Now $$\det \begin{bmatrix}b&a\\-a&b\end{bmatrix}=a^2+b^2$$. The equation has unique solution if and only if $$\gcd(\det,n)=1$$ ⚠️.
+Now $$\det \begin{bmatrix}b&a\\-a&b\end{bmatrix}=a^2+b^2$$. The equation has unique solution if and only if $$\gcd(\det,r^t)=1$$, which is equivalent to $$\det\equiv 0 \pmod r$$.
 
-Observe that $$x^2+1$$ is irreducible in $$\Z_p$$ and $$\Z_q$$, by CRM, we have
+For any element $$ax+b\in R$$, $$a,b\in\Z_r^t$$, the element is invertible if and only if $$\gcd{(a^2+b^2,r^t)}=1$$ (See Note 2). This implies $$r\not\mid(a^2+b^2)$$. By evaluating the Legendre symbol $$(-b^2)^{(r-1)/2}$$, we see that 
 $$
-K_0\cong \left(\Z_p[x]/(x^2+1)\right)
-\times \left(\Z_q[x]/(x^2+1)\right).
+a^2+b^2\equiv 0\pmod r
+\mathrm{~iff.~}
+a\equiv b \equiv 0 \pmod r.
 $$
-Also, as $$x^2+1$$ is irreducible, we have
+The count of such $$(a, b)$$ is $$(r^{t-1})^2$$. Hence
 $$
-K_0\cong \mathbb{F}_{p^2}\times \mathbb{F}_{q^2}.
+\left| R \right| = (r^t)^2-(r^{t-1})^2.
 $$
-It follows that
-$$
-K_0^*\cong \mathbb{F}_{p^2}^*\times \mathbb{F}_{q^2}^*.
-$$
-Therefore,
-$$
-\lvert K_0^* \rvert=(p^2-1)(q^2-1).
-$$
-
-#### Note 3. Explore $$K$$.
-
-Now $$K=K_0^*/\Z_n^*$$. Two elements $$[a_1x+b_1]$$, $$[a_2x+b_2]$$ in $$K_0^*$$ are equivalent, if and only if there exist $$u\in \Z_n^*$$ such that $$[a_1x+b_1]=[ua_2x+ub_2]$$.
-
-Therefore,
-$$
-\begin{align}
-\lvert K \rvert 
-&= \frac{\lvert K_0^*\rvert}{\lvert\Z_n^*\rvert}
-= \frac{(p^2-1)(q^2-1)}{(p-1)(q-1)} \\
-&=(p+1)(q+1).
-\end{align}
-$$
-
-#### Note 4. When $$n$$ falls into Case 4.
-
-$$x^2+1$$ is irreducible in $$\Z_{p_1}$$. By [this lemma](./ZpkReducible.md), it is also irreducible in $$\Z_{p_1^{d_1}}$$. Similarly it is irreducible in $$\Z_{p_2^{d_2}}$$. By CRT, we have
-$$
-K_0\cong
-\frac{\Z_{p_1}^{d_1}[x]}{x^2+1}\times\frac{\Z_{p_2}^{d_2}[x]}{x^2+1}.
-$$
-It follows that
-$$
-K_0^*\cong
-\left(\frac{\Z_{p_1}^{d_1}[x]}{x^2+1}\right)^*
-\times
-\left(\frac{\Z_{p_2}^{d_2}[x]}{x^2+1}\right)^*.
-$$
-Now we study the order of $$R=\left(\frac{\Z_r^t[x]}{x^2+1}\right)^*$$ where $$r\equiv 3\pmod 4$$ is prime and $$t$$ is positive integer.
-
-For any element $$ax+b\in R$$, $$a,b\in\Z_r^t$$, the element is invertible if and only if $$\gcd{(a^2+b^2,r^t)}=1$$ (See Note 2). Now we consider the count of elements in $$R$$ that is NOT invertible. $$\gcd{(a^2+b^2,r^t)}>1$$ implies that $$r\mid(a^2+b^2)$$, i.e.
-$$
-a^2+b^2\equiv 0 \pmod r.
-$$
-By simple calculation of Legendre symbol, if $$r\equiv 3\pmod 4$$ and $$x \bmod r$$ is a quadratic residue, then $$-x \bmod r$$ is a quadratic NON-residue, and vice versa. Hence the above equation implies $$a,b\equiv 0\pmod r$$. It follows that the count of such $$(a,b)$$ is $$(r^{t-1})^2$$.
-
 Now we go back to our main task. It follows that
 $$
 \begin{align}
-\left|K_0^*\right|&=\left((p_1^{d_1})^2-(p_1^{d_1-1})^2\right)\left((p_2^{d_2})^2-(p_2^{d_2-1})^2\right).
+\left|K_0^*\right|&=
+\left((p_1^{d_1})^2-(p_1^{d_1-1})^2\right)
+\left((p_2^{d_2})^2-(p_2^{d_2-1})^2\right).
 \end{align}
 $$
 On the other hand,
@@ -275,7 +247,11 @@ $$
 &= \frac{\lvert K_0^*\rvert}{\lvert\Z_n^*\rvert} \\
 &= (p_1^{d_1}+p_1^{d_1-1})(p_2^{d_2}+p_2^{d_2-1}) \\
 &= (p+p_1^{d_1-1})(q+p_2^{d_2-1}) \\
-&> (p+1)(q+1).
+&\ge (p+1)(q+1)
 \end{align}
 $$
-In conclusion, the fact that $$\left| K \right|>(p+1)(q+1)$$ is the key to the detection of Case 4 of Procedure 1.
+Note that polynomial $$x^{2k+1}+1$$ has root $$x=-1$$, which means $$x^{2k+1}+1$$ has a factor $$x+1$$. By applying this rule to $$\left| K \right|$$, we have
+$$
+\left| K \right| = (p_1+1)\left(\sum_{u=0}^{d_1-1}(-1)^u p_1^u\right)
+(q_1+1)\left(\sum_{v=0}^{d_2-1}(-1)^v p_2^v\right).
+$$
