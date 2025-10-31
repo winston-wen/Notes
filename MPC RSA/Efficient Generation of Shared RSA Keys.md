@@ -250,8 +250,3 @@ $$
 &\ge (p+1)(q+1)
 \end{align}
 $$
-Note that polynomial $$x^{2k+1}+1$$ has root $$x=-1$$, which means $$x^{2k+1}+1$$ has a factor $$x+1$$. By applying this rule to $$\left| K \right|$$, we have
-$$
-\left| K \right| = (p_1+1)\left(\sum_{u=0}^{d_1-1}(-1)^u p_1^u\right)
-(q_1+1)\left(\sum_{v=0}^{d_2-1}(-1)^v p_2^v\right).
-$$
