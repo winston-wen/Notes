@@ -1,14 +1,20 @@
+原标题: Efficient Generation of Shared RSA Keys
+
+原作者: [Dan Boneh](dabo@bellcore.com), [Matthew Franklin](franklin@research.att.com).
+
+
+
 ## Procedure 1. Semi-primality test
 
 Assume $$p, q$$ be positive random integers with $$p\equiv q\equiv 3\pmod 4$$. Let $$n=pq$$.
 
 Step 1. Choose $$g\in\Z_n^*$$.
 
-Step 2. If $$(g/N)\neq 1$$, go back to Step 1.
+Step 2. If $$(g/n)\neq 1$$, go back to Step 1.
 
 Step 3. Check whether
 $$
-g^\frac{n-p-q+1}{4}\equiv \pm 1\pmod N.
+g^\frac{n-p-q+1}{4}\equiv \pm 1\pmod n.
 $$
 
 ---
