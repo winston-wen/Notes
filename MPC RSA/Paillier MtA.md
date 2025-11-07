@@ -4,11 +4,11 @@
 
 Step 1 : 随机选择大质数 $$p, q$$, 满足 $$pq$$ 与 $$(p-1)(q-1)$$ 互质. 计算 $$n=pq$$, $$\lambda=\lambda(n)=\mathrm{lcm}{(p-1, q-1)}$$.
 
-Step 2 : 随机选择 $$g\in\Z_n^*$$. 由 $$g^\lambda\equiv 1\pmod n$$, 可知存在 $$\lambda_0\in \Z_n$$, 使得 $$g^\lambda\equiv 1+\lambda_0 n \pmod{n^2}$$ (提示: 二项式定理). 检查确保 $$\gcd{(\lambda_0,n)}\equiv 1\pmod n$$, 也就是 $$\lambda_0$$ 模 $$n$$ 可逆.
+Step 2 : 随机选择 $$g\in\Z_n^*$$. 由 $$g^\lambda\equiv 1\pmod n$$, 可知存在 $$\lambda_0\in \Z_n$$, 使得 $$g^\lambda\equiv 1+\lambda_0 n \pmod{n^2}$$ (提示: 二项式定理). 检查确保 $$\lambda_0\in\Z_n^*$$.
 
 💡1 : 为了计算方便, 我们通常选择 $$g=n+1$$. 此时 $$\lambda_0=\lambda$$.
 
-💡2 : 如果
+💡2 : 如果 $$\lambda_0\not\in\Z_n^*$$, 那么明文空间将大为缩小.
 
 至此, 得到公钥 $$(n, g)$$, 私钥 $$(p, q)$$.
 
@@ -31,10 +31,12 @@ $$
 \begin{align}
 c^\lambda &\equiv g^{\lambda m}\cdot r^{\lambda n} \pmod{n^2} \\
 &\equiv (1+\lambda_0n)^m \cdot (1+un)^n \pmod{n^2} \\
-\textrm{(binomial theorem)} &\equiv (1+m\lambda_0n)\cdot(1+nun) \pmod{n^2} \\
+&\textrm{apply binomial theorem:} \\
+&\equiv (1+m\lambda_0n)\cdot(1+nun) \pmod{n^2} \\
 &\equiv 1+m\lambda_0n \pmod{n^2}.
 \end{align}
 $$
+
 
 
 ## Paillier Homomorphism
@@ -46,4 +48,30 @@ $$
 (2) $$c_1g^{m_2}=C(m_1+m_2;~r_1)$$.
 
 (3) $$c_1^{m_2}=C(m_1m_2;~r_1^{m_2})$$.
+
+
+
+## Paillier MtA
+
+$$m$$ 个参与方编号为 1 到 $$m$$. 第 $$i$$ 参与方的流程如下.
+
+Step 1 : 生成 Paillier 私钥. 生成随机 $$p_i, q_i$$. 计算 Paillier 密文 $$[p_i]$$. 对每个 $$j\neq i$$, 生成随机 $$b_{i,j}$$. 交换 $$[p_i]$$ 和 Paillier 公钥.
+
+Step 2 : 构造等式关系 $$\eqref{mta}$$. 这实际上是计算 $$\eqref{aij}$$. 交换 $$[a_{i,j}]$$.
+$$
+[a_{i,j}+b_{i,j}]=[p_j\cdot q_i].
+\label{mta}\tag{mta}
+$$
+
+$$
+[a_{i,j}]:=[p_j]\otimes q_i ~\ominus~b_{i,j}.
+\tag{aij}\label{aij}
+$$
+
+Step 3 : 解密 $$[a_{j,i}]$$. 计算 $$\eqref{ni}$$. 交换 $$n_i$$.
+$$
+n_i:=p_iq_i+\sum_{j\ne i}(a_{j,i}+b_{i,j}).
+\label{ni}\tag{ni}
+$$
+Step 4 : 计算 $$n:=\sum_k n_k$$. 各方得到相同的 $$n$$.
 

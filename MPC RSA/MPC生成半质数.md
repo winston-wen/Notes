@@ -22,7 +22,7 @@ $$
 
 基于上一节所回顾的判定方法, 我们不难得到 $$m$$ 方半质数测定算法.
 
-Round 1: 各方分别生成 $$p_i, q_i$$. 其中, $$p_1,q_1\equiv 3\pmod 4$$, 其余 $$p_i,q_i\equiv 0\pmod 4$$. 这些参与方以 Beaver 三元组算法, 计算
+Round 1: 各方分别生成 $$p_i, q_i$$. 其中, $$p_1,q_1\equiv 3\pmod 4$$, 其余 $$p_i,q_i\equiv 0\pmod 4$$. 这些参与方以 Paillier MtA 算法, 计算
 $$
 n=\left(\sum_{i=1}^m p_i\right)\left(\sum_{j=1}^m q_j\right).
 $$
