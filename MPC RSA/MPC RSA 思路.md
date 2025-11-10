@@ -1,5 +1,7 @@
 ## 回顾
 
+### 半质数检测
+
 给定随机整数 $$p,q$$ 满足 $$p\equiv q\equiv 3\pmod 4$$. 令 $$n=pq$$. 如下步骤能够随机但无偏地判断 $$p,q$$ 是否为不同的质数.
 
 Step 1. 随机挑选 $$g\in\Z_n^*$$, 满足 $$(g|n)=1$$. 检查以下条件, 若为真则继续.
@@ -18,11 +20,21 @@ $$
 $$
 A\equiv0~(\mathrm{mod}~n)\;\land\; \gcd{(b,n)}=1.
 $$
-## 分布式半质数测定
+### MPC RSA签名的要点
+
+(1) 生成 $$\lambda$$ 分片.
+
+(2) 在 $$\lambda$$ 以分片形式存在的条件下, 生成 $$d$$ 分片, 使得 $$de\equiv 1\pmod \lambda$$.
+
+----
+
+## MPC RSA实现思路
+
+### 1. 分布式生成 $$pq$$
 
 基于上一节所回顾的判定方法, 我们不难得到 $$m$$ 方半质数测定算法.
 
-Round 1: 各方分别生成 $$p_i, q_i$$. 其中, $$p_1,q_1\equiv 3\pmod 4$$, 其余 $$p_i,q_i\equiv 0\pmod 4$$. 这些参与方以 Paillier MtA 算法, 计算
+Round 1: 各方分别生成 $$p_i, q_i$$. 其中, $$p_1,q_1\equiv 3\pmod 4$$, 其余 $$p_i,q_i\equiv 0\pmod 4$$. 这些参与方以分布式 MtA 协议, 计算
 $$
 n=\left(\sum_{i=1}^m p_i\right)\left(\sum_{j=1}^m q_j\right).
 $$
@@ -38,4 +50,42 @@ $$
 pq&=n, \\
 (p-1)(q-1)&=\varphi(n).
 \end{align}
+$$
+
+### 2. 分布式生成 $$\lambda$$.
+
+这里令 $$\lambda=\varphi(n)=(p-1)(q-1)$$. 仍然使用 MtA 协议, 在生成 $$pq$$ 的同时生成 $$(p-1)(q-1)$$. 各方执行到算出 $$\lambda_i$$ 之后就不继续通信.
+
+### 3. 分布式生成私钥 $$d$$.
+
+Step 1 : 协商一个随机的奇数公钥 $$e$$.
+
+Step 2 : 各方生成临时随机数 $$r_i$$. 利用 MtA 协议, 计算
+$$
+R = \left(\sum_{i=1}^m r_i\right)\left(\sum_{j=1}^m \lambda_j\right)
+\bmod e.
+$$
+如果 $$\gcd{(R, e)}\ne 1$$ 就重新执行 MtA 协议.
+
+Step 3 : 各方计算 $$t_i=r_iR^{-1}\bmod e$$. 注意到
+$$
+\sum_{i=1}^m t_i \equiv \left(\sum_{i=1}^m r_i\right)\cdot R^{-1} \equiv \lambda^{-1}\pmod e.
+$$
+Step 4 : 各方使用 MtA 协议, 得到
+$$
+\sum_{i=1}^m u_i = -\left(\sum_{i=1}^m t_i\right)\left(\sum_{j=1}^m \lambda_j\right) \bmod P.
+$$
+这里, $$P$$ 是 MtA 明文取值上界, 满足 $$P>2n^2e$$.
+
+
+
+
+
+----
+
+## 后记
+
+公式 $$\eqref{s1}$$ 中的 $$\frac{\cdot}{4}$$ 可以简化为
+$$
+g^\frac{n-p-q+1}{2}\equiv 1\pmod n.
 $$
