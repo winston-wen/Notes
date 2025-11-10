@@ -73,13 +73,15 @@ $$
 $$
 Step 4 : 各方使用 MtA 协议, 得到
 $$
-\sum_{i=1}^m u_i = -\left(\sum_{i=1}^m t_i\right)\left(\sum_{j=1}^m \lambda_j\right) \bmod P.
+\sum_{i=1}^m u_i = -\left(\sum_{i=1}^m t_i\right)\left(\sum_{j=1}^m \lambda_j\right) + 1 \bmod P.
 $$
-这里, $$P$$ 是 MtA 明文取值上界, 满足 $$P>2n^2e$$.
-
-
-
-
+这里, $$P$$ 是 MtA 明文取值上界, 满足 $$P>2n^2e$$. 这种构造使得 $$\sum u_i\equiv 1\pmod \lambda$$. 注意到 $$\sum u_i\equiv 0 \pmod e$$, 我们有 $$e\mid\sum u_i$$. 至此, 各方得到 $$d$$ 分片, 也就是.
+$$
+d_i=\left(
+\left\lfloor \frac{u_i}{e}\right\rfloor  ,~
+u_i\bmod e
+\right).
+$$
 
 ----
 
