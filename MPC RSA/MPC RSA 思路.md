@@ -56,7 +56,15 @@ $$
 
 这里令 $$\lambda=\varphi(n)=(p-1)(q-1)$$. 仍然使用 MtA 协议, 在生成 $$pq$$ 的同时生成 $$(p-1)(q-1)$$. 各方执行到算出 $$\lambda_i$$ 之后就不继续通信.
 
-### 3. 分布式生成私钥 $$d$$.
+### 3. 分布式试除法
+
+以 $$p_i$$ 为例. 设待检测的小质数为 $$\pi_k$$.
+
+推荐方法: 各方随机生成 $$r_i$$, 用 MtA 计算 $$pr=(\sum p_i)(\sum r_i)$$, 检查 $$pr\equiv 0 \pmod{\pi_k}$$.
+
+朴素但错误的方法: 各方计算 $$p_i\bmod{\pi_k}$$, 求和. 即便最终 $$\pi_k$$ 不是 $$p$$ 的因子, 使得无法直接应用 CRM. 但 $$p_i\bmod{\pi_k}$$ 是任人收集的, 现代密码学早有方法大幅减轻反推 $$p$$ 的计算量.
+
+### 4. 分布式生成私钥 $$d$$.
 
 Step 1 : 协商一个随机的奇数公钥 $$e$$.
 
@@ -87,7 +95,21 @@ $$
 
 ## 后记
 
-公式 $$\eqref{s1}$$ 中的 $$\frac{\cdot}{4}$$ 可以简化为
+(1) 公式 $$\eqref{s1}$$ 中的 $$\frac{\cdot}{4}$$ 可以简化为
 $$
 g^\frac{n-p-q+1}{2}\equiv 1\pmod n.
 $$
+(2) 若干常数的出处
+
+ffdhe4096
+
+```
+https://www.rfc-editor.org/rfc/rfc7919.html#appendix-A.3
+```
+
+Group 16
+
+```
+https://datatracker.ietf.org/doc/html/rfc3526#section-5
+```
+
