@@ -70,9 +70,9 @@ Note that the above congruence system is always valid, which is ensured by CRM. 
 
 Case 2. Suppose $$\gcd(p, q)>1$$. Then there exists an odd prime $$p_1$$ which divides $$p, q$$. Then $$p_1^2$$ divides $$n$$, which implies that $$p_1$$ divides $$\varphi(n)$$ (See Note 4 for hint).
 
-It follows that in $$\Z_n^*$$ there exists an element $$g$$ of order $$p_1$$. Since $$p_1$$ is odd, we have $$(g|n)=(g^{p_1}|n)=(1|n)=1$$, i.e. $$g\in G$$ by definition. Since $$r$$ divides $$p, q$$, we know that $$r$$ does not divide $$4e=n-p-q+1$$. Consequently, $$g^{4e}\not\equiv 1\pmod n$$, which implies that $$g^e \neq \pm 1 \pmod n$$. Hence $$g\not\in H$$.
+It follows that in $$\Z_n^*$$ there exists an element $$g$$ of order $$p_1$$. Since $$p_1$$ is odd, we have $$(g|n)=(g^{p_1}|n)=(1|n)=1$$, i.e. $$g\in G$$ by definition (See Note 5 for hint). Since $$r$$ divides $$p, q$$, we know that $$r$$ does not divide $$4e=n-p-q+1$$. Consequently, $$g^{4e}\not\equiv 1\pmod n$$, which implies that $$g^e \neq \pm 1 \pmod n$$. Hence $$g\not\in H$$.
 
-Case 3. The only way $$n=pq$$ does not fall into both above cases is: if $$p=p_1^{d_1}$$ and $$q=p_2^{d_2}$$ where $$p_1, p_2$$ are distinct odd primes,  $$d_1, d_2$$ are odd positive integers (see Note 5), and at least one of $$d_1, d_2$$ is larger than 1. By symmetry, we may assume $$d_1>1$$. Since $$\Z_p^*$$ is a cyclic group of order $$\varphi(p)=p_1^{d_1-1}(p_1-1)$$, it contains an element of order $$p_1^{d_1-1}$$. It follows that $$\Z_n^*$$ also contains an element $$g$$ of order $$p_1^{d_1-1}$$. As stated in Case 2, $$(g|n)=1$$, i.e. $$g\in G$$. If $$q\not\equiv 1 \pmod{p_1^{d_1-1}}$$, then $$4e=n-p-q+1$$ is not divisible by $$p_1^{d_1-1}$$. Consequently, $$g^{4e}\not\equiv 1\pmod n$$. Hence $$g\not\in H$$.
+Case 3. The only way $$n=pq$$ does not fall into both above cases is: if $$p=p_1^{d_1}$$ and $$q=p_2^{d_2}$$ where $$p_1, p_2$$ are distinct odd primes,  $$d_1, d_2$$ are odd positive integers (see Note 6), and at least one of $$d_1, d_2$$ is larger than 1. By symmetry, we may assume $$d_1>1$$. Since $$\Z_p^*$$ is a cyclic group of order $$\varphi(p)=p_1^{d_1-1}(p_1-1)$$, it contains an element of order $$p_1^{d_1-1}$$. It follows that $$\Z_n^*$$ also contains an element $$g$$ of order $$p_1^{d_1-1}$$. As stated in Case 2, $$(g|n)=1$$, i.e. $$g\in G$$. If $$q\not\equiv 1 \pmod{p_1^{d_1-1}}$$, then $$4e=n-p-q+1$$ is not divisible by $$p_1^{d_1-1}$$. Consequently, $$g^{4e}\not\equiv 1\pmod n$$. Hence $$g\not\in H$$.
 
 Case 4. We are left with the case which inherits Case 3, except that $$q\equiv 1 \pmod{p_1^{d_1-1}}$$. In this case, it may happen that $$H=G$$. For example, $$p=3^t$$ and $$q=2\cdot 3^{t-1} + 1$$ such that $$t$$ is odd and $$q$$ is prime.
 
@@ -114,7 +114,15 @@ By Lagrange Theorem of group order.
 
 For prime $$p$$ and positive integer $$k$$, $$\varphi(p^k)$$ $$=p^k-p^{k-1}$$. For coprime $$p, q$$, $$\varphi(pq)=\varphi(p)\varphi(q)$$.
 
-#### Note 5.
+### Note 5.
+
+order of $$g$$ is $$p_1$$ : $$(g^{p_1}|n)=(1|n)=1$$.
+
+kronecker symbol : $$(g^{p_1}|n) = (g|n)^{p_1}$$.
+
+$$p_1$$ is odd : $$(g|n)=\sqrt[p_1]{(g|n)^{p_1}}$$.
+
+#### Note 6.
 
 If $$p^k\equiv 3 \pmod 4$$, then $$p\equiv 3\pmod 4$$ and $$k$$ is odd.
 
